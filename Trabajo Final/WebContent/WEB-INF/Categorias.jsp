@@ -1,0 +1,13 @@
+ID;NAME;
+2614;Videocámaras y Cámaras Fotográficas;
+2617;Telefonía y Accesorios;
+2625;Televisores y Reproductores DVD;
+2626;Tablets, Libros Electrónicos y Accesorios;
+2627;Videojuegos, Consolas y Accesorios;
+2628;Drones;
+2629;Scooters Eléctricos;
+2630;Relojes y Smartwatch;
+2636;Audio y HI-FI;
+2642;Ordenadores y Periféricos;
+2648;Pilas, Cargadores y Adaptadores;
+2649;Accesorios de Electrónica;

@@ -1,10 +1,9 @@
 package com.utn.clases.DAO;
 
-import java.util.List;
-
-import com.utn.clases.pojo.Item;
+import java.util.ArrayList;
+import com.utn.modelo.ItemModelo;
 
 public interface ItemDAO {
-	public Item getItemDetail();
-	public List<Item> getAllItemsByCategory(int category);
+	public ItemModelo getItemDetail();
+	public ArrayList<ItemModelo> getAllItemsByCategory(ItemModelo categoria);
 }

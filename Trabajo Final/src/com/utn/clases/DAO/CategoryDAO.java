@@ -2,9 +2,9 @@ package com.utn.clases.DAO;
 
 import java.util.List;
 
-import com.utn.clases.pojo.Category;
+import com.utn.modelo.CategoryModelo;
 
 public interface CategoryDAO {
-	public List<Category> getAllCategories();
+	public List<CategoryModelo> getAllCategories();
 	public String getCategoryName(int id);
 }

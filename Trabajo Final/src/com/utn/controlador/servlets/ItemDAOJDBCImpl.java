@@ -2,13 +2,14 @@ package com.utn.controlador.servlets;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import com.utn.clases.DAO.ItemDAO;
-import com.utn.clases.pojo.Item;
 import com.utn.modelo.ItemModelo;
 
 public class ItemDAOJDBCImpl implements ItemDAO{
@@ -27,15 +28,22 @@ public class ItemDAOJDBCImpl implements ItemDAO{
 		
 	}
 	@Override
-	public Item getItemDetail() {
-		
+	public ItemModelo getItemDetail() { 
 		return null;
 	}
 	@Override
-	public List<Item> getAllItemsByCategory(int category) {
-		int categoryItem = item.getCategory(); 
-		if (categoryItem == category) {
+	public ArrayList<ItemModelo> getAllItemsByCategory(ItemModelo categoria) {
+		try {
+			con = ds.getConnection();
+			stmt = con.prepareStatement("SELECT TRAEME LAS COSAS POR CATEGORIA");
 			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		ArrayList <ItemModelo> listaItemsCategoria = new ArrayList <>();
+		int categoryItem = 0; 
+		if (categoryItem == categoria.getCategory()) {
+			listaItemsCategoria.add(categoria);
 		}
 		return null;
 	}

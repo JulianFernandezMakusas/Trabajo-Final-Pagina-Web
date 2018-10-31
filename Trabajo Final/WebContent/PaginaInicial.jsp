@@ -9,12 +9,10 @@
 <body>
 		BIENVENIDO A MERCADO GORDO, UN LUGAR DONDE COMPRAR Y SER GORDO A LA VEZ
 		<br></br>
-		Buscar un producto:
-		<br></br>
 		
 		Ver productos por categoria:
 	<label for ="categorias">Categoria:</label>
-	<select name ="select" id = "categoria">
+	<select id = "categoria" onchange="changeCategory()">
 	<option value = "0">Videocámaras y Cámaras Fotográficas</option>
 	<option value = "1">Telefonía y Accesorios</option>
 	<option value = "2">Televisores y Reproductores DVD</option>
@@ -28,6 +26,15 @@
 	<option value = "10">Pilas, Cargadores y Adaptadores</option>
 	<option value = "11">Accesorios de Electrónica </option>
 	</select>
+	<script type="text/javascript">
+	function changeCategory (){
+		var category = document.getElementById("categoria");
+		window.location.href = "/GetAllItemsByCategoryServlet="+x;
+	}
+	<label for ="Carrito">Agregar a carrito:</label>
+	<select id = "carrito" onchange= "agregarCarrito()">
+	<option value = "0">Añadir al carrito</option>
+	</script>
 	<br></br>
 	<form action="LogOutServlet" method = "post">
 	<button type = "submit">Cerrar Sesion</button>

@@ -27,6 +27,7 @@ public class ItemDAOJDBCImpl implements ItemDAO{
 		}
 		
 	}
+	String query;
 	@Override
 	public ItemModelo getItemDetail() { 
 		return null;
@@ -35,13 +36,13 @@ public class ItemDAOJDBCImpl implements ItemDAO{
 	public ArrayList<ItemModelo> getAllItemsByCategory(ItemModelo categoria) {
 		try {
 			con = ds.getConnection();
-			stmt = con.prepareStatement("SELECT TRAEME LAS COSAS POR CATEGORIA");
-			
+			stmt = con.prepareStatement("SELECT `NombreProducto`, `Descripcion`, `Precio`, `idCategoria` FROM `mercadogordo` WHERE `idcategoria` = ?");
+			stmt.setInt(1, item.getCategory());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		ArrayList <ItemModelo> listaItemsCategoria = new ArrayList <>();
-		int categoryItem = 0; 
+		int categoryItem = item.getCategory(); 
 		if (categoryItem == categoria.getCategory()) {
 			listaItemsCategoria.add(categoria);
 		}

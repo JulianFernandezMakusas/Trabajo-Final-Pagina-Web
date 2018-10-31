@@ -16,14 +16,22 @@ public class GetAllItemsByCategoryServlet extends HttpServlet {
     public GetAllItemsByCategoryServlet() {
         super();
     }
-    String query;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ItemDAOJDBCImpl metodo = new ItemDAOJDBCImpl();
-		ItemModelo itemmodelo = null;
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		ArrayList <ItemModelo> listaItems = metodo.getAllItemsByCategory(itemmodelo);
-		
-	}
+		String Scategoria = request.getParameter("x");
+		int Icategoria = Integer.parseInt(Scategoria);
+		int id = 0;
+		String name = null;
+		int category = Icategoria;
+		double price = 0;
+		String description = null;
+		String image = null;
+		ItemModelo itemmodelo = new ItemModelo(id, name, category, price, description, image);
+			ArrayList <ItemModelo> listaItems = metodo.getAllItemsByCategory(itemmodelo);
+			if (category == itemmodelo.getCategory()) {
+				listaItems.add(itemmodelo);
+			}
+		}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);

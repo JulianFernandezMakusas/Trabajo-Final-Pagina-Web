@@ -35,11 +35,19 @@ public class ItemDAOJDBCImpl implements ItemDAO{
 	}
 	@Override
 	public ArrayList<ItemModelo> getAllItemsByCategory() {
-		ItemModelo item = null;
+		
 		try {
 			con = ds.getConnection();
 			stmt = con.prepareStatement("SELECT `NombreProducto`, `Descripcion`, `Precio`, `idCategoria` FROM `mercadogordo` WHERE `idcategoria` = ?");
 			stmt.setInt(1, item.getCategory());
+			ResultSet rs = stmt.executeQuery();
+			int id = rs.getInt("idProducto");
+			String name = rs.getString("nombre");
+			int category = rs.getInt("categoriaID");
+			double price = rs.getDouble("precio");
+			String description = rs.getString("descripcion");
+			String image = rs.getString("imagen");
+			ItemModelo item = new ItemModelo(id, name, category, price, description, image);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

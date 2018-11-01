@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-10-2018 a las 22:13:48
+-- Tiempo de generación: 01-11-2018 a las 00:57:34
 -- Versión del servidor: 10.1.35-MariaDB
 -- Versión de PHP: 7.2.9
 
@@ -27,51 +27,66 @@ USE `basededatostrabajofinal`;
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `categoria`
+-- Estructura de tabla para la tabla `categoriaproducto`
 --
 
-CREATE TABLE `categoria` (
-  `Categoria` varchar(200) COLLATE utf8_spanish_ci NOT NULL,
-  `idCategoria` int(200) NOT NULL
+CREATE TABLE `categoriaproducto` (
+  `idCategoria` int(11) NOT NULL,
+  `nombreCategoria` text COLLATE utf8_spanish_ci NOT NULL,
+  `Categoria` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `categoria`
---
-
-INSERT INTO `categoria` (`Categoria`, `idCategoria`) VALUES
-('Videocámaras y Cámaras Fotográficas', 0),
-('Telefonía y Accesorios', 1),
-('Televisores y Reproductores DVD', 2),
-('Tablets, Libros Electrónicos y Accesorios', 3),
-('Videojuegos, Consolas y Accesorios', 4),
-('Drones', 5),
-('Scooters Eléctricos', 6),
-('Relojes y Smartwatch', 7),
-('Audio y HI-FI', 8),
-('Ordenadores y Periféricos', 9),
-('Pilas, Cargadores y Adaptadores', 10),
-('Accesorios de Electrónica', 11);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `mercadogordo`
+-- Estructura de tabla para la tabla `productos`
 --
 
-CREATE TABLE `mercadogordo` (
-  `NombreProducto` varchar(1000) COLLATE utf8_spanish_ci NOT NULL,
-  `Descripcion` text COLLATE utf8_spanish_ci NOT NULL,
-  `Precio` int(111) NOT NULL,
-  `idCategoria` int(255) NOT NULL
+CREATE TABLE `productos` (
+  `idProducto` int(80) NOT NULL,
+  `nombre` varchar(800) COLLATE utf8_spanish_ci NOT NULL,
+  `categoriaID` int(11) NOT NULL,
+  `precio` int(200) NOT NULL,
+  `descripcion` text COLLATE utf8_spanish_ci NOT NULL,
+  `imagen` text COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `mercadogordo`
+-- Índices para tablas volcadas
 --
 
-INSERT INTO `mercadogordo` (`NombreProducto`, `Descripcion`, `Precio`, `idCategoria`) VALUES
-('Auriculares beats', 'Auriculares increiblemente comodos, con bajos reforzados y aisldor de sonido', 700, 9);
+--
+-- Indices de la tabla `categoriaproducto`
+--
+ALTER TABLE `categoriaproducto`
+  ADD PRIMARY KEY (`idCategoria`);
+
+--
+-- Indices de la tabla `productos`
+--
+ALTER TABLE `productos`
+  ADD PRIMARY KEY (`idProducto`),
+  ADD KEY `categoriaID` (`categoriaID`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `productos`
+--
+ALTER TABLE `productos`
+  MODIFY `idProducto` int(80) NOT NULL AUTO_INCREMENT;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `categoriaproducto`
+--
+ALTER TABLE `categoriaproducto`
+  ADD CONSTRAINT `categoriaproducto_ibfk_1` FOREIGN KEY (`idCategoria`) REFERENCES `productos` (`categoriaID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

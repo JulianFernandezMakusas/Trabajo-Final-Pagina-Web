@@ -5,5 +5,6 @@ import com.utn.modelo.ItemModelo;
 
 public interface ItemDAO {
 	public ItemModelo getItemDetail();
-	public ArrayList<ItemModelo> getAllItemsByCategory(ItemModelo categoria);
+	public ArrayList<ItemModelo> getAllItemsByCategory();
+	public ArrayList<ItemModelo> getAllItems();
 }

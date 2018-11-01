@@ -31,9 +31,6 @@
 		var category = document.getElementById("categoria");
 		window.location.href = "/GetAllItemsByCategoryServlet="+x;
 	}
-	<label for ="Carrito">Agregar a carrito:</label>
-	<select id = "carrito" onchange= "agregarCarrito()">
-	<option value = "0">Añadir al carrito</option>
 	</script>
 	<br></br>
 	<form action="LogOutServlet" method = "post">

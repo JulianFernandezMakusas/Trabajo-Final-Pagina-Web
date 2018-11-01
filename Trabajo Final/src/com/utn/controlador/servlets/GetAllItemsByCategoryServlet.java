@@ -27,7 +27,7 @@ public class GetAllItemsByCategoryServlet extends HttpServlet {
 		String description = null;
 		String image = null;
 		ItemModelo itemmodelo = new ItemModelo(id, name, category, price, description, image);
-			ArrayList <ItemModelo> listaItems = metodo.getAllItemsByCategory(itemmodelo);
+			ArrayList <ItemModelo> listaItems = metodo.getAllItemsByCategory();
 			if (category == itemmodelo.getCategory()) {
 				listaItems.add(itemmodelo);
 			}

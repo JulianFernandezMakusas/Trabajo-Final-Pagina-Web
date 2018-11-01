@@ -2,6 +2,7 @@ package com.utn.controlador.servlets;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,7 @@ public class ItemDAOJDBCImpl implements ItemDAO{
 	private PreparedStatement stmt = null;
 	private InitialContext ic;
 	private DataSource ds;
+	String query;
 	public ItemDAOJDBCImpl() {
 		try {
 		ic = new InitialContext();
@@ -27,13 +29,13 @@ public class ItemDAOJDBCImpl implements ItemDAO{
 		}
 		
 	}
-	String query;
 	@Override
 	public ItemModelo getItemDetail() { 
 		return null;
 	}
 	@Override
-	public ArrayList<ItemModelo> getAllItemsByCategory(ItemModelo categoria) {
+	public ArrayList<ItemModelo> getAllItemsByCategory() {
+		ItemModelo item = null;
 		try {
 			con = ds.getConnection();
 			stmt = con.prepareStatement("SELECT `NombreProducto`, `Descripcion`, `Precio`, `idCategoria` FROM `mercadogordo` WHERE `idcategoria` = ?");
@@ -43,10 +45,34 @@ public class ItemDAOJDBCImpl implements ItemDAO{
 		}
 		ArrayList <ItemModelo> listaItemsCategoria = new ArrayList <>();
 		int categoryItem = item.getCategory(); 
-		if (categoryItem == categoria.getCategory()) {
-			listaItemsCategoria.add(categoria);
+		if (categoryItem == item.getCategory()) {
+			listaItemsCategoria.add(item);
 		}
 		return null;
+	}
+	@Override
+	public ArrayList<ItemModelo> getAllItems() {
+		ArrayList<ItemModelo> listaItems = new ArrayList <ItemModelo> ();
+		ItemModelo item;
+		query = "SELECT * FROM `mercadogordo`";
+		try {
+			ds.getConnection();
+			stmt = con.prepareStatement(query);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next() == true) {
+				int id = rs.getInt("idProducto");
+				String name = rs.getString("nombre");
+				int category = rs.getInt("categoriaID");
+				double price = rs.getDouble("precio");
+				String description = rs.getString("descripcion");
+				String image = rs.getString("imagen");
+				item = new ItemModelo(id, name, category, price, description, image);
+				listaItems.add(item);
+			}
+		} catch (SQLException e) {
+			
+		}
+		return listaItems;
 	}
 
 }
